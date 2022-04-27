@@ -1,0 +1,27 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: bookmedik
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: bookmedik
+  namespace: bookmedik
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: bookmedik
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: .
+    repoURL: https://github.com/DanielPG25/practica_kubernetes_bookmedik.git
+    targetRevision: main
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+---
