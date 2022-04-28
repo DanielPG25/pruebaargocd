@@ -2,26 +2,26 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: joomla
+  name: odoo
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: joomla-app
+  name: odoo-app
   namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
-    chart: joomla
+    chart: odoo
     repoURL: https://charts.bitnami.com/bitnami
-    targetRevision: 13.0.1
+    targetRevision: 21.2.9
     helm:
-      releaseName: joomla
+      releaseName: odoo
   destination:
     server: "https://kubernetes.default.svc"
-    namespace: joomla
+    namespace: odoo
   syncPolicy:
     automated:
       prune: true
