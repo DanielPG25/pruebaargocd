@@ -317,7 +317,14 @@ metadata:
   name: dashboard-ing
   annotations:
     nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+    ingress.kubernetes.io/ssl-passthrough: "true"
+    nginx.org/ssl-backends: "kubernetes-dashboard"
+    kubernetes.io/ingress.allow-http: "false"
 spec:
+  tls:
+  - hosts:
+    - www.k8sdashboard.org
+    secretName: kubernetes-dashboard-certs
   rules:
   - host: www.k8sdashboard.org
     http:
