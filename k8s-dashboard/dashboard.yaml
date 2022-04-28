@@ -318,7 +318,7 @@ metadata:
 spec:
   rules:
   - host: www.k8sdashboard.org
-    http:
+    https:
       paths:
       - path: /
         pathType: Prefix
